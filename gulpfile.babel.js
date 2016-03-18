@@ -1,0 +1,37 @@
+'use strict';
+
+import babelify from 'babelify';
+import browserify from 'browserify';
+import buffer from 'vinyl-buffer';
+import eslint from 'gulp-eslint';
+import gulp from 'gulp';
+import gutil from 'gulp-util';
+import reactify from 'reactify';
+import source from 'vinyl-source-stream';
+import sourcemaps from 'gulp-sourcemaps';
+import uglify from 'gulp-uglify';
+
+gulp.task('lint', () => {
+  gulp.src('components/*.js')
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
+
+gulp.task('javascript', function () {
+  // set up the browserify instance on a task basis
+  const b = browserify({
+    entries: './app.js',
+    transform: [reactify, babelify]
+  });
+
+  return b.bundle()
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
+        // Add transformation tasks to the pipeline here.
+        .pipe(uglify())
+        .on('error', gutil.log)
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./dist/js/'));
+});
