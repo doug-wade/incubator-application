@@ -2,6 +2,7 @@
 
 import babelify from 'babelify';
 import browserify from 'browserify';
+import babel from 'gulp-babel';
 import buffer from 'vinyl-buffer';
 import del from 'del';
 import eslint from 'gulp-eslint';
@@ -12,17 +13,18 @@ import source from 'vinyl-source-stream';
 import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
 
-gulp.task('lint', () => {
-  gulp.src('components/*.js')
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+gulp.task('lint', (cb) => {
+  gulp.src('browser/*.js')
+      .pipe(eslint())
+      .pipe(eslint.format())
+      .pipe(eslint.failAfterError());
+  cb();
 });
 
-gulp.task('javascript', ['clean'], () => {
+gulp.task('browser', ['clean'], () => {
   // set up the browserify instance on a task basis
   const b = browserify({
-    entries: './app.js',
+    entries: './browser/app.js',
     transform: [babelify, reactify]
   });
 
@@ -37,13 +39,19 @@ gulp.task('javascript', ['clean'], () => {
     .pipe(gulp.dest('./dist/js/'));
 });
 
-gulp.task('views', ['clean'], () => {
+gulp.task('server', ['lint', 'clean'], () => {
+  gulp.src('server/*.js')
+      .pipe(babel())
+      .pipe(gulp.dest('build'));
+});
+
+gulp.task('views', ['lint', 'clean'], () => {
   gulp.src('views/*.html')
-    .pipe(gulp.dest('dist'))
+      .pipe(gulp.dest('dist'))
 });
 
 gulp.task('clean', (cb) => {
-  del(['dist']).then((paths, err) => cb(err));
+  del(['dist', 'build']).then((paths, err) => cb(err));
 });
 
-gulp.task('build', ['javascript', 'views']);
+gulp.task('build', ['browser', 'server', 'views']);
