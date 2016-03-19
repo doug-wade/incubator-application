@@ -6,8 +6,7 @@ const bodyParser = require("koa-bodyparser"),
       koa        = require("koa"),
       route      = require("koa-route"),
       serve      = require("koa-static"),
-      session    = require("koa-session"),
-      views      = require("co-views");
+      session    = require("koa-session");
 
 app = module.exports = koa();
 
@@ -49,8 +48,6 @@ app.use(compress(compressOptions));
 app.use(json());
 app.use(session(app));
 app.use(bodyParser());
-
-render = views("views/");
 
 app.use(serve("dist/"));
 

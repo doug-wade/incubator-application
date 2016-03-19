@@ -3,6 +3,7 @@
 import babelify from 'babelify';
 import browserify from 'browserify';
 import buffer from 'vinyl-buffer';
+import del from 'del';
 import eslint from 'gulp-eslint';
 import gulp from 'gulp';
 import gutil from 'gulp-util';
@@ -18,7 +19,7 @@ gulp.task('lint', () => {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('javascript', function () {
+gulp.task('javascript', ['clean'], () => {
   // set up the browserify instance on a task basis
   const b = browserify({
     entries: './app.js',
@@ -35,3 +36,14 @@ gulp.task('javascript', function () {
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./dist/js/'));
 });
+
+gulp.task('views', ['clean'], () => {
+  gulp.src('views/*.html')
+    .pipe(gulp.dest('dist'))
+});
+
+gulp.task('clean', (cb) => {
+  del(['dist']).then((paths, err) => cb(err));
+});
+
+gulp.task('build', ['javascript', 'views']);

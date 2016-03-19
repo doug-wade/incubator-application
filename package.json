@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "gulp test",
-    "start": "node server.js"
+    "start": "node server.js | bunyan"
   },
   "repository": {
     "type": "git",
@@ -54,6 +54,7 @@
     "browserify": "^13.0.0",
     "bunyan": "^1.8.0",
     "co-views": "^2.1.0",
+    "del": "^2.2.0",
     "eslint": "^2.3.0",
     "eslint-plugin-babel": "^3.1.0",
     "eslint-plugin-react": "^4.2.1",
