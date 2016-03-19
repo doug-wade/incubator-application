@@ -1,20 +1,22 @@
 import React from "react"
 
 export default class HelloWorld extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {exclamationCount: 0};
-		this.increment = () => {
-			this.setState({exclamationCount: this.state.exclamationCount + 1});
-		}
-	}
+  constructor(props) {
+    super(props);
+    this.state = {exclamationCount: 0};
+  }
 
-	render() {
-		return (
-			<div>
-				<h2>Hello, World{"!".repeat(this.state.exclamationCount)}</h2>
-				<button onClick={this.increment}>Get More Excited!</button>
-			</div>
-			);
-	}
+  render() {
+    return (
+      <div>
+        <h2>Hello, World{"!".repeat(this.props.excitement)}</h2>
+        <button onClick={this.props.onGetExcited}>Get More Excited!</button>
+      </div>
+      );
+  }
+}
+
+HelloWorld.propTypes = {
+  excitement: React.PropTypes.number.isRequired,
+  onGetExcited: React.PropTypes.func.isRequired,
 }
