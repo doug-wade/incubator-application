@@ -4,7 +4,8 @@
   "description": "Apply to join the Cornish College of the Arts incubator",
   "main": "server.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -51,6 +52,8 @@
     "babel-register": "^6.7.2",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
+    "bunyan": "^1.8.0",
+    "co-views": "^2.1.0",
     "eslint": "^2.3.0",
     "eslint-plugin-babel": "^3.1.0",
     "eslint-plugin-react": "^4.2.1",
@@ -61,6 +64,15 @@
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
     "koa": "^1.2.0",
+    "koa-bodyparser": "^2.0.1",
+    "koa-bunyan": "0.0.2",
+    "koa-compress": "^1.0.9",
+    "koa-gzip": "^0.1.0",
+    "koa-json": "^1.1.1",
+    "koa-qs": "^2.0.0",
+    "koa-route": "^2.4.2",
+    "koa-session": "^3.3.1",
+    "koa-static": "^2.0.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "reactify": "^1.1.1",
