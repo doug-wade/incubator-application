@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "gulp test",
-    "start": "node server.js | bunyan"
+    "start": "gulp build && node server.js | bunyan"
   },
   "repository": {
     "type": "git",
