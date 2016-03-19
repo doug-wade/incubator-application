@@ -22,7 +22,7 @@ gulp.task('javascript', function () {
   // set up the browserify instance on a task basis
   const b = browserify({
     entries: './app.js',
-    transform: [reactify, babelify]
+    transform: [babelify, reactify]
   });
 
   return b.bundle()
