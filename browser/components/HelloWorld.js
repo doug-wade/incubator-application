@@ -1,22 +1,26 @@
-import React from "react"
+import React from 'react'
+import { connect } from 'react-redux'
 
-export default class HelloWorld extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {exclamationCount: 0};
+const mapStateToProps = (state) => {
+  return {
+    excitement: state.excitement
   }
+}
 
-  render() {
-    return (
-      <div>
-        <h2>Hello, World{"!".repeat(this.props.excitement)}</h2>
-        <button onClick={this.props.onGetExcited}>Get More Excited!</button>
-      </div>
-      );
-  }
+let HelloWorld = ({ excitement, dispatch }) => {
+  return (
+    <div>
+      <h2>Hello, World{'!'.repeat(excitement)}</h2>
+      <button onClick={ () => dispatch({ type: 'GET_EXCITED' }) }>Get More Excited!</button>
+    </div>
+  );
 }
 
 HelloWorld.propTypes = {
   excitement: React.PropTypes.number.isRequired,
-  onGetExcited: React.PropTypes.func.isRequired,
+  dispatch: React.PropTypes.func.isRequired // TODO: exclude this from eslint
 }
+
+HelloWorld = connect(mapStateToProps)(HelloWorld);
+
+export default HelloWorld;
