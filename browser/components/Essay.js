@@ -5,13 +5,13 @@ export default class Essay extends React.Component {
     super(props);
   }
 
-	render() {
-		return (
-			<div>
-				<h2>{this.props.prompt}</h2>
-				<textarea id={this.props.elementId} placeholder='Type text here'></textarea>
-			</div>
-			);
-	}
+  render() {
+    return (
+      <div>
+        <h2>{this.props.prompt}</h2>
+        <textarea id={this.props.elementId} placeholder='Type text here'></textarea>
+      </div>
+      );
+  }
 }
-Essay.propTypes = {prompt: React.PropTypes.string.isRequired, elementId: React.PropTypes.string.isRequired};
+Essay.propTypes = { prompt: React.PropTypes.string.isRequired, elementId: React.PropTypes.string.isRequired };

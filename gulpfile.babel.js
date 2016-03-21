@@ -14,7 +14,7 @@ import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
 
 gulp.task('lint', (cb) => {
-  gulp.src('browser/*.js')
+  gulp.src('browser/**/*.js')
       .pipe(eslint())
       .pipe(eslint.format())
       .pipe(eslint.failAfterError());
