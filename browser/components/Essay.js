@@ -9,7 +9,7 @@ export default class Essay extends React.Component {
     return (
       <div>
         <h2>{this.props.prompt}</h2>
-        <textarea id={this.props.elementId} placeholder='Type text here'></textarea>
+        <textarea id={this.props.elementId} placeholder='Type text here' className="essay"></textarea>
       </div>
       );
   }
