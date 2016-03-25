@@ -26,7 +26,7 @@ let Contributors = ({ contributors, dispatch }) => {
   }
   return (
     <div>
-      <h3>Contributors: </h3>
+      <h2>Contributors: </h2>
       {people}
       <button onClick={addPerson}>Add Contributor</button>
     </div>
