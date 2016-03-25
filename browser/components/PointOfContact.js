@@ -10,18 +10,19 @@ const mapStateToProps = (state) => {
   }
 }
 
-let PointOfContact = ({ name, email }) => {
+let PointOfContact = ({ name, email, dispatch }) => {
   return (
     <div>
       <h2>Point of Contact: </h2>
-      <Person onUpdate={updatePointOfContact} name={name} email={email} />
+      <Person onUpdate={(hash) => dispatch(updatePointOfContact(hash))} name={name} email={email} />
     </div>
   );
 }
 
 PointOfContact.propTypes = {
   name: React.PropTypes.string.isRequired,
-  email: React.PropTypes.string.isRequired
+  email: React.PropTypes.string.isRequired,
+  dispatch: React.PropTypes.func.isRequired
 }
 
 PointOfContact = connect(mapStateToProps)(PointOfContact);
