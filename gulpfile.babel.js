@@ -11,6 +11,7 @@ import gutil from 'gulp-util';
 import reactify from 'reactify';
 import source from 'vinyl-source-stream';
 import sourcemaps from 'gulp-sourcemaps';
+import stylus from 'gulp-stylus';
 import uglify from 'gulp-uglify';
 
 gulp.task('lint', (cb) => {
@@ -54,4 +55,12 @@ gulp.task('clean', (cb) => {
   del(['dist', 'build']).then((paths, err) => cb(err));
 });
 
-gulp.task('build', ['browser', 'server', 'views']);
+gulp.task('styles', ['clean'], () => {
+  gulp.src('styles/*')
+      .pipe(stylus())
+      .pipe(gulp.dest('dist/styles'))
+});
+
+gulp.task('build', ['browser', 'server', 'views', 'styles']);
+
+gulp.task('default', ['build']);
