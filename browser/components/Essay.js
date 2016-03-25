@@ -14,7 +14,7 @@ let Essay = ({ prompt, elementId, dispatch }) => {
         ref={node => {
           input = node
         }}
-        onBlur={() => dispatch(updateEssay(prompt, input.value))}>
+        onBlur={() => dispatch(updateEssay({ prompt: prompt, response: input.value }))}>
       </textarea>
     </div>
   );
