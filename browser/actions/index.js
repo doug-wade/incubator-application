@@ -11,3 +11,11 @@ export const persistState = () => {
     type: 'PERSIST_STATE'
   }
 }
+
+export const updateEssay = (prompt, response) => {
+  return {
+    type: 'UPDATE_ESSAY',
+    prompt: prompt.replace(/\s/gi, '-').replace(/\?/gi, '').toLowerCase(),
+    response
+  }
+}

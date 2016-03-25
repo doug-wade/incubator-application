@@ -53,6 +53,11 @@ export default function application(state = { excitement: 0, poc: { name: '', em
       upsertState(state);
       return state;
     }
+    case 'UPDATE_ESSAY': {
+      return Object.assign({}, state, {
+        [action.prompt]: action.response
+      });
+    }
     default: {
       return state;
     }
