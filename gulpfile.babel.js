@@ -14,15 +14,23 @@ import sourcemaps from 'gulp-sourcemaps';
 import stylus from 'gulp-stylus';
 import uglify from 'gulp-uglify';
 
+const paths = {
+  browser: 'browser/**/*.js',
+  build: 'build',
+  dist: 'dist',
+  server: 'server/*.js',
+  views: 'views/*.html'
+}
+
 gulp.task('lint', (cb) => {
-  gulp.src('browser/**/*.js')
+  gulp.src([paths.browser, paths.server])
       .pipe(eslint())
       .pipe(eslint.format())
       .pipe(eslint.failAfterError());
   cb();
 });
 
-gulp.task('browser', ['clean'], () => {
+gulp.task('browser', () => {
   // set up the browserify instance on a task basis
   const b = browserify({
     entries: './browser/app.js',
@@ -41,18 +49,18 @@ gulp.task('browser', ['clean'], () => {
 });
 
 gulp.task('server', ['lint', 'clean'], () => {
-  gulp.src('server/*.js')
+  gulp.src(paths.server)
       .pipe(babel())
-      .pipe(gulp.dest('build'));
+      .pipe(gulp.dest(paths.build));
 });
 
-gulp.task('views', ['lint', 'clean'], () => {
-  gulp.src('views/*.html')
-      .pipe(gulp.dest('dist'))
+gulp.task('views', () => {
+  gulp.src(paths.views)
+      .pipe(gulp.dest(paths.dist))
 });
 
 gulp.task('clean', (cb) => {
-  del(['dist', 'build']).then((paths, err) => cb(err));
+  del([paths.dist, paths.build]).then((paths, err) => cb(err));
 });
 
 gulp.task('styles', ['clean'], () => {
@@ -64,3 +72,8 @@ gulp.task('styles', ['clean'], () => {
 gulp.task('build', ['browser', 'server', 'views', 'styles']);
 
 gulp.task('default', ['build']);
+
+gulp.task('watch', () => {
+  gulp.watch(paths.browser, ['browser'])
+  gulp.watch(paths.styles, ['styles'])
+})

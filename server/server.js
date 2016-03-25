@@ -1,6 +1,5 @@
 import ApplicationController from "./ApplicationController";
 import bodyParser from "koa-bodyparser";
-import bunyan from "bunyan";
 import compress from "koa-compress";
 import json from "koa-json";
 import kbunyan from "koa-bunyan";
