@@ -5,3 +5,9 @@ export const updatePointOfContact = ({ name, email }) => {
     email
   }
 }
+
+export const persistState = () => {
+  return {
+    type: 'PERSIST_STATE'
+  }
+}
