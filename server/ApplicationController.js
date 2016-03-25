@@ -1,7 +1,10 @@
 import uuid from 'node-uuid';
 import logger from './logger';
+import fs from 'fs';
+import path from 'path';
 
-const applications = [];
+bootstrapDbFile();
+const applications = JSON.parse(fs.readFileSync(path.resolve('./db.json')));
 
 /**
  * Creates a controller for handling application forms.
@@ -31,6 +34,7 @@ export default class ApplicationController {
   _upsert(){
     return function*() {
       const application = this.request.body;
+
       if (application.id) {
         for (var i = 0; i < applications.length; i++) {
           if (applications[i].id.toString() === application.id) {
@@ -43,6 +47,8 @@ export default class ApplicationController {
         logger.info(`Created application ${JSON.stringify(application)}`);
         applications.push(application);
       }
+
+      write(applications);
 
       this.body = application;
     };
@@ -90,5 +96,17 @@ export default class ApplicationController {
   register(router) {
     router.post('/application', this._upsert());
     router.get('/application/:id', this._get());
+  }
+}
+
+function write(applications) {
+  fs.writeFileSync('db.json', JSON.stringify(applications));
+}
+
+function bootstrapDbFile() {
+  try {
+    fs.accessSync(path.resolve('./db.json'));
+  } catch (e) {
+    fs.writeFileSync(path.resolve('./db.json'), JSON.stringify([]));
   }
 }
