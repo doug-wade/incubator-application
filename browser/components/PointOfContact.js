@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 let PointOfContact = ({ name, email }) => {
   return (
     <div>
-      <h3>Point of Contact: </h3>
+      <h2>Point of Contact: </h2>
       <Person onUpdate={updatePointOfContact} name={name} email={email} />
     </div>
   );
