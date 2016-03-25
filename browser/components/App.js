@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 let App = () => (
   <div>
-    <HelloWorld />,
+    <HelloWorld />
     <Essay prompt="What are you doing?" elementId="q1" />
     <Essay prompt="Who is your target audience?" elementId="q2" />
     <Essay prompt="How will you make money or sustain your business?" elementId="q3" />
