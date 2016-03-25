@@ -1,17 +1,31 @@
 import React from "react"
+import { connect } from 'react-redux'
+import { updateEssay } from "../actions"
 
-export default class Essay extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <h2>{this.props.prompt}</h2>
-        <textarea id={this.props.elementId} placeholder='Type text here' className="essay"></textarea>
-      </div>
-      );
-  }
+let Essay = ({ prompt, elementId, dispatch }) => {
+  let input
+  return (
+    <div>
+      <h2>{prompt}</h2>
+      <textarea
+        id={elementId}
+        placeholder='Type text here'
+        className="essay"
+        ref={node => {
+          input = node
+        }}
+        onBlur={() => dispatch(updateEssay(prompt, input.value))}>
+      </textarea>
+    </div>
+  );
 }
-Essay.propTypes = { prompt: React.PropTypes.string.isRequired, elementId: React.PropTypes.string.isRequired };
+
+Essay.propTypes = {
+  prompt: React.PropTypes.string.isRequired,
+  elementId: React.PropTypes.string.isRequired,
+  dispatch: React.PropTypes.func.isRequired
+};
+
+Essay = connect()(Essay);
+
+export default Essay;
