@@ -12,10 +12,19 @@ export const persistState = () => {
   }
 }
 
-export const updateEssay = (prompt, response) => {
+export const updateEssay = ({ prompt, response }) => {
   return {
     type: 'UPDATE_ESSAY',
     prompt: prompt.replace(/\s/gi, '-').replace(/\?/gi, '').toLowerCase(),
     response
+  }
+}
+
+export const updateContributor = ({ name, email, id }) => {
+  return {
+    type: 'UPDATE_CONTRIBUTOR',
+    name,
+    email,
+    id
   }
 }

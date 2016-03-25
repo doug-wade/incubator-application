@@ -3,11 +3,13 @@ import HelloWorld from './HelloWorld'
 import PointOfContact from './PointOfContact'
 import Essay from './Essay'
 import Submit from './Submit'
+import Contributors from './Contributors'
 import { connect } from 'react-redux'
 
 let App = () => (
   <div>
     <PointOfContact />
+    <Contributors />
     <Essay prompt="What are you doing?" elementId="q1" />
     <Essay prompt="Who is your target audience?" elementId="q2" />
     <Essay prompt="How will you make money or sustain your business?" elementId="q3" />
