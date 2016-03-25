@@ -28,14 +28,22 @@ export default class ApplicationController {
    *       "whyThisWhyNow": "paragraph of text"
    *     }
    */
-  _create(){
+  _upsert(){
     return function*() {
       const application = this.request.body;
-      application.id = uuid.v4();
+      if (application.id) {
+        for (var i = 0; i < applications.length; i++) {
+          if (applications[i].id.toString() === application.id) {
+            applications[i] = application;
+            logger.info(`Updated application ${JSON.stringify(application)}`);
+          }
+        }
+      } else {
+        application.id = uuid.v4();
+        logger.info(`Created application ${JSON.stringify(application)}`);
+        applications.push(application);
+      }
 
-      logger.info(`Created application ${JSON.stringify(application)}`);
-
-      applications.push(application);
       this.body = application;
     };
   }
@@ -80,7 +88,7 @@ export default class ApplicationController {
    * @param {Object} router the koa router object.
    */
   register(router) {
-    router.post('/application', this._create());
+    router.post('/application', this._upsert());
     router.get('/application/:id', this._get());
   }
 }
