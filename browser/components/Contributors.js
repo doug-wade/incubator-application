@@ -10,26 +10,19 @@ const mapStateToProps = (state) => {
   }
 }
 
-let Contributors = ({ contributors }) => {
+let Contributors = ({ contributors, dispatch }) => {
   const people = [];
   contributors.forEach((contributor) => {
     people.push(
       <Person
-        onUpdate={ (hash) => { updateContributor(contributor.id, hash) }}
+        onUpdate={ (hash) => { dispatch(updateContributor(contributor.id, hash)) }}
         name={contributor.name}
         email={contributor.email}
       />
     )
   });
   const addPerson = () => {
-    const id = uuid.v4();
-    people.push(
-      <Person
-        onUpdate={ (hash) => { updateContributor(id, hash) }}
-        name=''
-        email=''
-      />
-    )
+    dispatch(updateContributor(uuid.v4(), { name: '', email: '' }))
   }
   return (
     <div>
@@ -45,7 +38,8 @@ Contributors.propTypes = {
     name: React.PropTypes.string,
     email: React.PropTypes.string,
     id: React.PropTypes.string
-  }))
+  })),
+  dispatch: React.PropTypes.func
 }
 
 Contributors = connect(mapStateToProps)(Contributors);

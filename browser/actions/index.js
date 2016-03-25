@@ -20,7 +20,7 @@ export const updateEssay = ({ prompt, response }) => {
   }
 }
 
-export const updateContributor = ({ name, email, id }) => {
+export const updateContributor = (id, { name, email }) => {
   return {
     type: 'UPDATE_CONTRIBUTOR',
     name,

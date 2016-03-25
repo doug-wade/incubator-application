@@ -37,7 +37,13 @@ function upsertState(state) {
   req.end();
 }
 
-export default function application(state = { excitement: 0, poc: { name: '', email: '' } }, action) {
+const defaultState = {
+  excitement: 0,
+  poc: { name: '', email: '' },
+  contributors: []
+}
+
+export default function application(state = defaultState, action) {
   switch (action.type) {
     case 'GET_EXCITED': {
       return Object.assign({}, state, {
