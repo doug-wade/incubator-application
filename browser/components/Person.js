@@ -7,12 +7,16 @@ let Person = ({ name, email, onUpdate }) => {
 
   return (
     <div>
-      <label>Name:
-        <input type="text" onBlur={onBlur} value={name} />
-      </label>
-      <label>Email address:
-        <input type="email" onBlur={onBlur} value={email} />
-      </label>
+      <div>
+        <label>Name:
+          <input type="text" onBlur={onBlur} value={name} className="person-text" />
+        </label>
+      </div>
+      <div>
+        <label>Email address:
+          <input type="email" onBlur={onBlur} value={email} className="person-text" />
+        </label>
+      </div>
     </div>
   );
 }
