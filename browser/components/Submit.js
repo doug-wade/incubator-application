@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from 'react-redux'
-import { persistState } from "../actions"
+import { persistState, showPopover } from "../actions"
 
 let Submit = ({ dispatch }) => {
   return (
     <div>
-      <button onClick={() => dispatch(persistState())}>Submit</button>
+      <button onClick={() => { dispatch(persistState()); dispatch(showPopover()); } }>Submit</button>
     </div>
   );
 }

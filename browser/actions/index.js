@@ -12,6 +12,12 @@ export const persistState = () => {
   }
 }
 
+export const showPopover = () => {
+  return {
+    type: 'SHOW_POPOVER'
+  }
+}
+
 export const updateEssay = ({ prompt, response }) => {
   return {
     type: 'UPDATE_ESSAY',

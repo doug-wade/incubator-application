@@ -5,6 +5,7 @@ import Submit from './Submit'
 import Contributors from './Contributors'
 import Title from './Title'
 import Instructions from './Instructions'
+import Popover from './Popover'
 import { connect } from 'react-redux'
 
 let App = () => (
@@ -20,6 +21,7 @@ let App = () => (
     <Essay prompt="How will you further the Cornish mission of Artist, Citizen, Innovator?" elementId="q5" />
     <Essay prompt="Why this why now?" elementId="q6" />
     <Submit />
+    <Popover />
   </div>
 )
 

@@ -40,7 +40,8 @@ function upsertState(state) {
 const defaultState = {
   excitement: 0,
   poc: { name: '', email: '' },
-  contributors: []
+  contributors: [],
+  popover: false
 }
 
 export default function application(state = defaultState, action) {
@@ -62,6 +63,11 @@ export default function application(state = defaultState, action) {
           name: action.name,
           email: action.email
         }
+      });
+    }
+    case 'SHOW_POPOVER': {
+      return Object.assign({}, state, {
+        popover: true
       });
     }
     case 'UPDATE_ESSAY': {

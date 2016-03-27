@@ -101,6 +101,8 @@ gulp.task('clean-styles', (cb) => {
   del([paths.stylesOut]).then((paths, err) => cb(err));
 });
 
+gulp.task('lint', ['lint-server', 'lint-browser'])
+
 gulp.task('build', ['browser', 'server', 'views', 'styles']);
 
 gulp.task('default', ['build']);
