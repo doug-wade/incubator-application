@@ -1,13 +1,16 @@
 import React from 'react'
-import HelloWorld from './HelloWorld'
 import PointOfContact from './PointOfContact'
 import Essay from './Essay'
 import Submit from './Submit'
 import Contributors from './Contributors'
+import Title from './Title'
+import Instructions from './Instructions'
 import { connect } from 'react-redux'
 
 let App = () => (
   <div>
+    <Title />
+    <Instructions />
     <PointOfContact />
     <Contributors />
     <Essay prompt="What are you doing?" elementId="q1" />
@@ -17,7 +20,6 @@ let App = () => (
     <Essay prompt="How will you further the Cornish mission of Artist, Citizen, Innovator?" elementId="q5" />
     <Essay prompt="Why this why now?" elementId="q6" />
     <Submit />
-    <HelloWorld />
   </div>
 )
 
