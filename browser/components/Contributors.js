@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 }
 
 let Contributors = ({ contributors, dispatch }) => {
-  const people = [];
+  let people = [];
   contributors.forEach((contributor) => {
     people.push(
       <Person
@@ -24,6 +24,7 @@ let Contributors = ({ contributors, dispatch }) => {
   const addPerson = () => {
     dispatch(updateContributor(uuid.v4(), { name: '', email: '' }))
   }
+  people = people.length ? people : <p>You currently have no contributors.  You may apply, but are much more likely to be accepted with at least one contributor.  Click below to add another.</p>
   return (
     <div>
       <h2>Contributors: </h2>
