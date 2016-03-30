@@ -9,8 +9,8 @@ let Essay = ({ prompt, elementId, dispatch }) => {
       <h2>{prompt}</h2>
       <textarea
         id={elementId}
-        placeholder='Type text here'
-        className="essay"
+        placeholder='Compose response'
+        className="essay form-group"
         ref={node => {
           input = node
         }}

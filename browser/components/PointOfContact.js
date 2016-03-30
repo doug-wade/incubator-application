@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 let PointOfContact = ({ name, email, dispatch }) => {
   return (
     <div>
-      <h2>Point of Contact: </h2>
+      <h2>Your Information</h2>
       <Person onUpdate={(hash) => dispatch(updatePointOfContact(hash))} name={name} email={email} />
     </div>
   );
