@@ -24,12 +24,12 @@ let Contributors = ({ contributors, dispatch }) => {
   const addPerson = () => {
     dispatch(updateContributor(uuid.v4(), { name: '', email: '' }))
   }
-  people = people.length ? people : <p>You currently have no contributors.  You may apply, but are much more likely to be accepted with at least one contributor.  Click below to add another.</p>
   return (
     <div>
-      <h2>Contributors: </h2>
+      <h2>Contributors </h2>
+      <p className="subtext">You are much more likely to be accepted with at least one contributor. Add another below.</p>
       {people}
-      <button onClick={addPerson}>Add Contributor</button>
+      <button className="secondary" onClick={addPerson}>Add Contributor</button>
     </div>
   );
 }

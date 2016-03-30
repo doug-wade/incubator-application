@@ -9,7 +9,7 @@ import Popover from './Popover'
 import { connect } from 'react-redux'
 
 let App = () => (
-  <div>
+  <div className="wrapper">
     <Title />
     <Instructions />
     <PointOfContact />

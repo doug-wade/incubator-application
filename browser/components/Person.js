@@ -1,8 +1,12 @@
 import React from "react"
+import uuid from "node-uuid"
 
 let Person = ({ name, email, onUpdate }) => {
   let nameInput
   let emailInput
+
+  let nameInputId = uuid.v4()
+  let emailInputId = uuid.v4()
 
   const onBlur = () => {
     onUpdate({ name: nameInput.value, email: emailInput.value })
@@ -10,27 +14,27 @@ let Person = ({ name, email, onUpdate }) => {
 
   return (
     <div>
-      <div>
-        <label>Name:
-          <input
-            type="text"
-            onBlur={onBlur}
-            defaultValue={name}
-            ref={node => { nameInput = node }}
-            className="person-text"
-          />
-        </label>
+      <div className="form-group">
+        <label htmlFor={nameInputId}>Name</label>
+        <input
+          type="text"
+          onBlur={onBlur}
+          defaultValue={name}
+          ref={node => { nameInput = node }}
+          className="person-text"
+          id={nameInputId}
+        />
       </div>
-      <div>
-        <label>Email address:
-          <input
-            type="email"
-            onBlur={onBlur}
-            defaultValue={email}
-            ref={node => { emailInput = node }}
-            className="person-text"
-          />
-        </label>
+      <div className="form-group">
+        <label htmlFor={emailInputId}>Email address</label>
+        <input
+          type="email"
+          onBlur={onBlur}
+          defaultValue={email}
+          ref={node => { emailInput = node }}
+          className="person-text"
+          id={emailInputId}
+        />
       </div>
     </div>
   );

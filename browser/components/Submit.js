@@ -5,7 +5,7 @@ import { persistState, showPopover } from "../actions"
 let Submit = ({ dispatch }) => {
   return (
     <div>
-      <button onClick={() => { dispatch(persistState()); dispatch(showPopover()); } }>Submit</button>
+      <button className="primary" onClick={() => { dispatch(persistState()); dispatch(showPopover()); } }>Submit</button>
     </div>
   );
 }
