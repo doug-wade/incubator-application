@@ -15,24 +15,9 @@ function upsertState(state) {
   };
 
   var req = http.request(options, (res) => {
-    /* eslint no-console: 0 */
-    console.log(`STATUS: ${res.statusCode}`);
-    console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
     res.setEncoding('utf8');
-    res.on('data', (chunk) => {
-      console.log(`BODY: ${chunk}`);
-    });
-    res.on('end', () => {
-      console.log('No more data in response.')
-    })
   });
 
-  req.on('error', (e) => {
-    console.log(`problem with request: ${e.message}`);
-  });
-  /* eslint no-console: 0 */
-
-  // write data to request body
   req.write(postData);
   req.end();
 }
@@ -45,8 +30,6 @@ let defaultState = {
 };
 
 let savedState = JSON.parse(localStorage.getItem('appState'));
-
-console.info('defaultState', defaultState)
 
 export default function application(state = savedState || defaultState, action) {
   let newState
@@ -91,7 +74,7 @@ export default function application(state = savedState || defaultState, action) 
     }
     case 'UPDATE_COMPANY_TYPE': {
       newState = Object.assign({}, state, {
-        companyType: action.type
+        companyType: action.companyType
       });
       break;
     }
