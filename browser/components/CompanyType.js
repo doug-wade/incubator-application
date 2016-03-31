@@ -8,30 +8,34 @@ const mapStateToProps = (state) => {
   }
 }
 
+const options = [
+  'Art',
+  'Comics',
+  'Crafts',
+  'Dance',
+  'Design',
+  'Fashion',
+  'Film & Media',
+  'Games',
+  'Journalism',
+  'Music',
+  'Performance',
+  'Photography',
+  'Publishing',
+  'Technology',
+  'Theater'
+].map(val => <option value={val} label={val}>{val}</option>);
+
 let CompanyType = ({ dispatch, type }) => {
   let input
   return (
     <div>
       <h2>Company Type</h2>
       <select
-        onClick={() => dispatch(updateCompanyType({ type: input.value }))}
+        onChange={() => dispatch(updateCompanyType({ type: input.value }))}
         ref={node => { input = node }}
         defaultValue={type}>
-          <option>Art</option>
-          <option>Comics</option>
-          <option>Crafts</option>
-          <option>Dance</option>
-          <option>Design</option>
-          <option>Fashion</option>
-          <option>Film & Media</option>
-          <option>Games</option>
-          <option>Journalism</option>
-          <option>Music</option>
-          <option>Performance</option>
-          <option>Photography</option>
-          <option>Publishing</option>
-          <option>Technology</option>
-          <option>Theater</option>
+          {options}
       </select>
     </div>
   );
