@@ -37,43 +37,70 @@ function upsertState(state) {
   req.end();
 }
 
-const defaultState = {
+let defaultState = {
   excitement: 0,
   poc: { name: '', email: '' },
   contributors: [],
   popover: false
-}
+};
 
-export default function application(state = defaultState, action) {
+let savedState = JSON.parse(localStorage.getItem('appState'));
+
+console.info('defaultState', defaultState)
+
+export default function application(state = savedState || defaultState, action) {
+  let newState
   switch (action.type) {
     case 'GET_EXCITED': {
-      return Object.assign({}, state, {
+      newState = Object.assign({}, state, {
         excitement: state.excitement += 1
       });
+      break;
     }
     case 'UPDATE_POC': {
-      state.poc.name = action.name || state.poc.name;
-      state.poc.email = action.email || state.poc.email;
-      return state;
-    }
-    case 'PERSIST_STATE': {
-      upsertState(state);
-      return Object.assign({}, state, {
+      newState = Object.assign({}, state, {
         poc: {
           name: action.name,
           email: action.email
         }
       });
+      break;
+    }
+    case 'PERSIST_STATE': {
+      upsertState(state);
+      newState = state;
+      break;
     }
     case 'SHOW_POPOVER': {
-      return Object.assign({}, state, {
+      newState = Object.assign({}, state, {
         popover: true
       });
+      break;
     }
     case 'UPDATE_ESSAY': {
-      return Object.assign({}, state, {
+      newState = Object.assign({}, state, {
         [action.prompt]: action.response
       });
+      break;
+    }
+    case 'UPDATE_COMPANY_NAME': {
+      newState = Object.assign({}, state, {
+        companyName: action.name
+      });
+      break;
+    }
+    case 'UPDATE_COMPANY_TYPE': {
+      newState = Object.assign({}, state, {
+        companyType: action.type
+      });
+      break;
+    }
+    case 'REMOVE_CONTRIBUTOR': {
+      const contributors = state.contributors.slice(0, state.contributors.length - 1)
+      newState = Object.assign({}, state, {
+        contributors: contributors
+      });
+      break;
     }
     case 'UPDATE_CONTRIBUTOR': {
       let updated = false;
@@ -92,12 +119,15 @@ export default function application(state = defaultState, action) {
       if (!updated) {
         contributors.push({ id: action.id, name: action.name, email: action.email });
       }
-      return Object.assign({}, state, {
+      newState = Object.assign({}, state, {
         contributors: contributors
       });
+      break;
     }
     default: {
-      return state;
+      newState = state;
     }
   }
+  localStorage.setItem('appState', JSON.stringify(newState))
+  return newState;
 }

@@ -2,7 +2,17 @@ import React from "react"
 import { connect } from 'react-redux'
 import { updateEssay } from "../actions"
 
-let Essay = ({ prompt, elementId, dispatch }) => {
+function normalizePrompt(prompt) {
+  return prompt.replace(/\s/gi, '-').replace(/\?/gi, '').toLowerCase();
+}
+
+function mapStateToProps(state, ownProps) {
+  return {
+    answer: state[normalizePrompt(ownProps.prompt)]
+  };
+}
+
+let Essay = ({ prompt, elementId, answer, dispatch }) => {
   let input
   return (
     <div>
@@ -14,7 +24,8 @@ let Essay = ({ prompt, elementId, dispatch }) => {
         ref={node => {
           input = node
         }}
-        onBlur={() => dispatch(updateEssay({ prompt: prompt, response: input.value }))}>
+        defaultValue={answer}
+        onBlur={() => dispatch(updateEssay({ prompt: normalizePrompt(prompt), response: input.value }))}>
       </textarea>
     </div>
   );
@@ -23,9 +34,10 @@ let Essay = ({ prompt, elementId, dispatch }) => {
 Essay.propTypes = {
   prompt: React.PropTypes.string.isRequired,
   elementId: React.PropTypes.string.isRequired,
-  dispatch: React.PropTypes.func.isRequired
+  dispatch: React.PropTypes.func.isRequired,
+  answer: React.PropTypes.string.isRequired
 };
 
-Essay = connect()(Essay);
+Essay = connect(mapStateToProps)(Essay);
 
 export default Essay;
