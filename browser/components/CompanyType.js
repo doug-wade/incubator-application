@@ -17,7 +17,19 @@ let CompanyType = ({ dispatch, type }) => {
         onClick={() => dispatch(updateCompanyType({ type: input.value }))}
         ref={node => { input = node }}
         defaultValue={type}>
+          <option>Art</option>
+          <option>Comics</option>
+          <option>Crafts</option>
           <option>Dance</option>
+          <option>Design</option>
+          <option>Fashion</option>
+          <option>Film & Media</option>
+          <option>Games</option>
+          <option>Journalism</option>
+          <option>Music</option>
+          <option>Performance</option>
+          <option>Photography</option>
+          <option>Publishing</option>
           <option>Technology</option>
           <option>Theater</option>
       </select>
