@@ -6,12 +6,16 @@ import Contributors from './Contributors'
 import Title from './Title'
 import Instructions from './Instructions'
 import Popover from './Popover'
+import CompanyName from './CompanyName'
+import CompanyType from './CompanyType'
 import { connect } from 'react-redux'
 
 let App = () => (
   <div className="wrapper">
     <Title />
     <Instructions />
+    <CompanyName />
+    <CompanyType />
     <PointOfContact />
     <Contributors />
     <Essay prompt="What are you doing?" elementId="q1" />
@@ -21,7 +25,7 @@ let App = () => (
     <Essay prompt="How will you further the Cornish mission of Artist, Citizen, Innovator?" elementId="q5" />
     <Essay prompt="Why this why now?" elementId="q6" />
     <Submit />
-    <Popover />
+    <Popover showPopover={false}/>
   </div>
 )
 

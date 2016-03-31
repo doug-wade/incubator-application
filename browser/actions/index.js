@@ -21,8 +21,28 @@ export const showPopover = () => {
 export const updateEssay = ({ prompt, response }) => {
   return {
     type: 'UPDATE_ESSAY',
-    prompt: prompt.replace(/\s/gi, '-').replace(/\?/gi, '').toLowerCase(),
+    prompt: prompt,
     response
+  }
+}
+
+export const updateCompanyName = ({ name }) => {
+  return {
+    type: 'UPDATE_COMPANY_NAME',
+    name
+  }
+}
+
+export const updateCompanyType = ({ type }) => {
+  return {
+    type: 'UPDATE_COMPANY_TYPE',
+    companyType: type
+  }
+}
+
+export const removeContributor = () => {
+  return {
+    type: 'REMOVE_CONTRIBUTOR'
   }
 }
 
