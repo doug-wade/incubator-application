@@ -29,8 +29,8 @@ const options = [
 let CompanyType = ({ dispatch, type }) => {
   let input
   return (
-    <div>
-      <h2>Company Type</h2>
+    <div className="form-group">
+      <label>Company Type</label>
       <select
         onChange={() => dispatch(updateCompanyType({ type: input.value }))}
         ref={node => { input = node }}

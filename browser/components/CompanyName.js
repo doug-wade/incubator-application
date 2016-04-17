@@ -11,8 +11,8 @@ const mapStateToProps = (state) => {
 let CompanyName = ({ name, dispatch }) => {
   let input
   return (
-    <div>
-      <h2>Company Name</h2>
+    <div className="form-group">
+      <label>Company Name</label>
       <input
         type="text"
         ref={node => {

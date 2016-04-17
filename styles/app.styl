@@ -2,9 +2,11 @@ typography1 = normal 1rem "Helvetica Neue", Helvetica, Arial, sans-serif;
 typography2 = .875rem;
 colorDark = #333
 
+*
+  box-sizing: border-box;
+  
 body
-  font:typography1
-  line-height:1.5
+  font: 14px / 1.4 Roboto, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "Segoe UI", sans-serif;
   color:colorDark
   background-color:#f5f5f5
 
@@ -12,8 +14,11 @@ h1
   font-size:2rem
 
 h2
-  margin:2rem 0 .5rem
+  margin:2rem 0 .25rem
   font-weight:normal
+
+h3
+  font-size:1.5rem
 
 .subtext
   font-size:typography2
@@ -22,41 +27,57 @@ h2
 
 div.wrapper
   background-color:white
-  width:50%
+  width:980px
   margin:auto
-  padding:2rem
+  padding:3rem
   box-shadow: 0px 0px 5px rgba(0,0,0,.2);
 
 button
   border-radius:2px
-  padding:0 1rem 0
-  border:none
-  font:typography1
-  &.primary
-    height:48px
-    background-color:#1567B5
-    margin-top:2rem
-    color:white
-    padding:0 2rem 0
+  padding: 0.55rem 1rem;
+  border: 1px solid #e5e5e5
+  background-color: transparent;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  position: relative;
+  font:inherit
+  display: inline-block;
+  font-weight:500
+  color:purple
+  margin-top:1.5rem
+  transition: all .15s linear;
   &.secondary
-    height:36px
-    background-color:#f5f5f5
-    border:1px solid #ccc
-    color:colorDark
     margin-right: 1.5rem
+  &:hover
+    color: #fff;
+    background-color: #7a3497;
+    border-color: #7a3497;
+    transition: all .15s linear;
 
 label
   display: block;
-  margin-bottom: 2px;
-  color: colorDark;
-  font-size:typography2
+  margin-bottom: 1px;
+  color: #999;
 
-input, textarea
-  padding:.5rem
+input, textarea, select
+  padding:.875rem
   font: inherit
   border:1px solid #ccc
+  transition: all .1s linear;
+  &:hover
+    border:1px solid #999
+  &:focus
+    border:1px solid #999
+    outline:none
 
-input
+select
+  height:49px
+  border-radius:2px
+  background-color: transparent
+  padding: 2px 0 0 12px!important;
+
+input, select
   width: 200px
 
 textarea.essay
