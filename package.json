@@ -29,7 +29,7 @@
   "dependencies": {
     "bunyan": "^1.8.0",
     "koa": "^1.2.0",
-    "koa-bodyparser": "^2.0.1",
+    "koa-bodyparser": "^2.2.0",
     "koa-bunyan": "1.0.0",
     "koa-compress": "^1.0.9",
     "koa-json": "^1.1.1",
