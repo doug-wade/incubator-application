@@ -38,7 +38,7 @@
     "koa-session": "^3.3.1",
     "koa-static": "^2.0.0",
     "node-uuid": "^1.4.7",
-    "react": "^15.3.0",
+    "react": "^15.3.1",
     "react-dom": "^15.3.0",
     "react-redux": "^4.4.5",
     "redux": "^3.3.1"
