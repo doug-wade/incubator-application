@@ -4,7 +4,7 @@
   "description": "Apply to join the Cornish College of the Arts incubator",
   "main": "server.js",
   "scripts": {
-    "test": "gulp lint",
+    "test": "jest && gulp lint",
     "start": "gulp build && node build/server.js | bunyan"
   },
   "repository": {
@@ -80,6 +80,8 @@
     "gulp-stylus": "^2.3.1",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
+    "jest": "16.0.0",
+    "react-test-renderer": "15.3.2",
     "reactify": "^1.1.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
