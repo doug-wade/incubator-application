@@ -39,7 +39,7 @@ gulp.task('clean-browser', (cb) => {
   del([paths.browserOut]).then((paths, err) => cb(err));
 });
 
-gulp.task('browser', ['lint-browser', 'clean-browser'], () => {
+gulp.task('browser', ['clean-browser'], () => {
   // set up the browserify instance on a task basis
   const b = browserify({
     entries: './browser/app.js',
@@ -70,7 +70,7 @@ gulp.task('clean-server', (cb) => {
   del([paths.build]).then((paths, err) => cb(err));
 });
 
-gulp.task('server', ['lint-server', 'clean-server'], () => {
+gulp.task('server', ['clean-server'], () => {
   gulp.src(paths.server)
       .pipe(babel())
       .pipe(gulp.dest(paths.build));
