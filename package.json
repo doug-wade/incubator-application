@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "jest && gulp lint",
-    "start": "gulp build && node build/server.js | bunyan"
+    "start": "gulp build && node build/server.js | bunyan",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -41,7 +43,8 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "snyk": "^1.316.2"
   },
   "devDependencies": {
     "babel-eslint": "^7.0.0",
@@ -85,5 +88,6 @@
     "reactify": "^1.1.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
-  }
+  },
+  "snyk": true
 }
